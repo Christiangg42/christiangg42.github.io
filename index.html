@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christiangg42 - Fortnite Streamer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="logo/youtube headingv2.png" alt="Christiangg42 Channel Banner" id="heading-banner">
+        <nav>
+            <ul>
+                <!-- Navigation links can go here later -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="intro">
+            <img src="logo/Square CM Logo.png" alt="Christiangg42 Logo" id="profile-logo">
+            <h1>Welcome to Christiangg42's Hub!</h1>
+            <p>Your go-to place for Fortnite streams, highlights, and updates.</p>
+            
+            <div class="channel-description">
+                <h2>Christian Martin - Young Fortnite Streamer & Family Gaming Adventures!</h2>
+                <p>Join me as I battle, build, and have fun in Fortnite with my friends and family! Watch for:</p>
+                <p>• Epic gameplay moments</p>
+                <p>• Family-friendly entertainment</p>
+                <p>• Weekly streams with giveaways</p>
+                <p>• Tips and tricks for young players</p>
+                <p>Let's drop in together! New streams weekly 🎮</p>
+            </div>
+        </section>
+
+        <section id="socials">
+            <h2>Connect with Me</h2>
+            <div class="social-links-container">
+                <a href="https://www.youtube.com/@Christiangg42" target="_blank" class="social-link-box youtube-link">
+                    <img src="images/socials/youtube-logo.png" alt="YouTube">
+                    <span>YouTube</span>
+                </a>
+                <a href="https://www.twitch.tv/christiangg42" target="_blank" class="social-link-box twitch-link">
+                    <img src="images/socials/twitch-logo.png" alt="Twitch">
+                    <span>Twitch</span>
+                </a>
+                <a href="https://x.com/christiangg42" target="_blank" class="social-link-box x-link">
+                    <img src="images/socials/x-logo.png" alt="Twitter/X">
+                    <span>Twitter</span>
+                </a>
+                <a href="https://www.facebook.com/Christiangg42" target="_blank" class="social-link-box facebook-link">
+                    <img src="images/socials/facebook-logo.png" alt="Facebook">
+                    <span>Facebook</span>
+                </a>
+                <!-- Add Snapchat later if needed -->
+            </div>
+        </section>
+
+        <section id="latest-streams">
+            <h2>Latest Streams & Videos</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/videoseries?list=UU68pa6bw1QO406WQ7Nl4UDA" 
+                        title="Latest YouTube Videos" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <section id="live-stream">
+            <h2>Live Now!</h2>
+            <div class="video-container">
+                 <iframe src="https://www.youtube.com/embed/live_stream?channel=UC68pa6bw1QO406WQ7Nl4UDA" 
+                        title="Live Stream" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Christiangg42. All rights reserved.</p>
+        <button id="dark-mode-toggle">Toggle Dark Mode</button>
+    </footer>
+
+    <script>
+        const toggleButton = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // Check for saved theme preference - Default to dark
+        if (localStorage.getItem('theme') !== 'light') {
+            body.classList.add('dark-mode');
+        }
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            // Save theme preference
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                // Explicitly save 'light' when toggling off dark mode
+                localStorage.setItem('theme', 'light'); 
+            }
+        });
+
+    </script>
+</body>
+</html> 

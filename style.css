@@ -1,0 +1,424 @@
+:root {
+    /* --- Gamey Theme Colors --- */
+    --primary-color: #00ffcc; /* Vibrant Teal/Cyan */
+    --secondary-color: #9a00ff; /* Vibrant Purple */
+    --background-light: #e0e0e0; /* Lighter gray for light mode */
+    --text-light: #1a1a1a;
+    --card-bg-light: #f5f5f5;
+    --border-light: #cccccc;
+
+    --background-dark: #0d0d0d; /* Very dark grey/off-black */
+    --text-dark: #e8e8e8; /* Light grey for text */
+    --card-bg-dark: #1a1a1a; /* Slightly lighter dark for cards */
+    --border-dark: #333; /* Darker border */
+    
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Keep font for now */
+    --link-color: var(--primary-color); /* Use primary accent for links */
+}
+
+body {
+    font-family: var(--font-primary);
+    margin: 0;
+    background-color: var(--background-light);
+    color: var(--text-light);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+    --link-color: var(--primary-color); /* Ensure primary color is used in dark mode */
+}
+
+header {
+    /* background-color: #333; Remove fixed background */
+    color: #fff;
+    padding: 0;
+    text-align: center;
+    position: relative; /* Needed for potential overlay later */
+}
+
+#heading-banner {
+    width: 100%;
+    max-height: 350px; /* Slightly taller banner */
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.8); /* Slightly dim banner for text contrast */
+}
+
+/* Optional: Add title overlay on banner if needed */
+/* header h1 { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    font-size: 3em;
+} */
+
+nav {
+    background: rgba(10, 10, 10, 0.7); /* Darker semi-transparent nav background */
+    padding: 8px 0; /* Slightly reduced padding */
+    position: sticky; /* Make nav sticky */
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Remove default margin */
+    text-align: center; /* Center nav items */
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px; /* Increased spacing */
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--secondary-color);
+}
+
+main {
+    max-width: 1000px; /* Slightly narrower */
+    margin: 20px auto; /* Reduced top/bottom margin */
+    padding: 20px; /* Reduced padding */
+    background-color: var(--card-bg-light);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* Slightly enhanced shadow */
+    border-radius: 5px; /* Sharper corners */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode main {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 5px 18px rgba(0, 255, 204, 0.15); /* Slightly enhanced shadow with primary color tint */
+}
+
+#intro {
+    text-align: center;
+    margin-bottom: 30px; /* Reduced margin */
+    padding-bottom: 20px; /* Reduced padding */
+    border-bottom: 1px solid var(--border-light);
+}
+
+body.dark-mode #intro {
+     border-bottom: 1px solid var(--border-dark);
+}
+
+#profile-logo {
+    width: 150px; /* Slightly smaller logo */
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px; /* Reduced margin */
+    border: 4px solid var(--secondary-color); /* Use secondary accent color */
+    box-shadow: 0 0 15px rgba(154, 0, 255, 0.6); /* Shadow matching secondary color */
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 8px; /* Reduced margin */
+    font-size: 2.5em; /* Slightly smaller */
+}
+
+h2 {
+    color: var(--secondary-color); /* Use secondary color for headings */
+    text-align: center; /* Center section titles */
+    margin-bottom: 20px; /* Reduced margin */
+    font-size: 2em; /* Slightly smaller */
+    text-transform: uppercase; /* Uppercase for gamey feel */
+    letter-spacing: 1px; /* Add some letter spacing */
+}
+
+body.dark-mode h1 {
+    color: var(--primary-color); /* Keep primary color */
+}
+body.dark-mode h2 {
+     color: var(--secondary-color); /* Keep secondary color */
+}
+
+#intro p {
+    font-size: 1.1em; /* Slightly smaller */
+    color: #555;
+}
+
+body.dark-mode #intro p {
+    color: #bbb;
+}
+
+/* Channel Description Specific Styles */
+.channel-description {
+    margin-top: 20px; /* Add space above the description */
+    margin-bottom: 15px; /* Add space below the description */
+}
+
+.channel-description h2 {
+    font-size: 1.5em; /* Slightly smaller heading */
+    margin-bottom: 10px;
+    color: var(--secondary-color); /* Match other headings */
+}
+
+.channel-description p {
+    font-size: 1em; /* Adjust paragraph size if needed */
+    margin-bottom: 8px; /* Space between description paragraphs */
+    line-height: 1.5; /* Improve readability */
+    color: #555; /* Match intro paragraph color */
+}
+
+body.dark-mode .channel-description p {
+     color: #bbb; /* Dark mode color */
+}
+
+#latest-streams, #live-stream, #socials {
+    margin-bottom: 35px; /* Reduced margin */
+}
+
+#socials ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#socials ul li {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+#socials a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-size: 1.2em;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+#socials a:hover {
+    color: var(--primary-color);
+}
+
+body.dark-mode #socials a:hover {
+    color: #e1bee7; /* Lighter purple hover for dark mode */
+}
+
+/* Responsive YouTube Embed - No changes needed */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    margin-bottom: 15px; /* Reduced margin */
+    border-radius: 5px; /* Sharper corners for video */
+    border: 1px solid var(--border-dark); /* Add subtle border */
+}
+
+body.dark-mode .video-container {
+    border: 1px solid var(--primary-color); /* Use primary color for border in dark mode */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; /* Remove default iframe border */
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px; /* Reduced margin */
+    padding: 15px; /* Reduced padding */
+    background-color: #1f1f1f; /* Darker footer */
+    color: #aaa;
+    transition: background-color 0.3s, color 0.3s;
+    border-top: 1px solid var(--border-dark); /* Add top border */
+}
+
+body.dark-mode footer {
+    background-color: #101010; /* Even darker footer */
+    color: #888;
+    border-top: 1px solid var(--border-dark);
+}
+
+/* Dark Mode Toggle Button */
+#dark-mode-toggle {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 8px 12px; /* Adjusted padding */
+    border-radius: 3px; /* Sharper corners */
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 10px; /* Reduced margin */
+    transition: background-color 0.3s, transform 0.1s ease;
+    border: 1px solid transparent;
+}
+
+#dark-mode-toggle:hover {
+    background: var(--primary-color);
+    color: var(--background-dark); /* Dark text on hover */
+    transform: scale(1.05); /* Slight scale effect */
+    border: 1px solid var(--primary-color);
+}
+
+body.dark-mode #dark-mode-toggle {
+    background: var(--primary-color);
+    color: #0d0d0d; /* Dark text on primary background */
+    border: 1px solid var(--primary-color);
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+     background: var(--secondary-color);
+     color: #e8e8e8; /* Light text on hover */
+     border: 1px solid var(--secondary-color);
+} 
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2em;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    #intro p {
+        font-size: 1em;
+    }
+
+    #profile-logo {
+        width: 120px;
+        height: 120px;
+        border-width: 3px;
+    }
+
+    #heading-banner {
+        max-height: 250px; /* Lower banner height on mobile */
+    }
+
+    main {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    nav ul li {
+        margin: 0 10px; /* Slightly reduce nav spacing */
+    }
+
+    #socials ul li {
+        display: block; /* Stack social links vertically */
+        margin: 15px 0; /* Add vertical space between links */
+    }
+
+    #socials a {
+        font-size: 1.1em;
+    }
+
+    #latest-streams, #live-stream, #socials, #intro {
+        margin-bottom: 30px; /* Reduce space between sections */
+    }
+
+    .video-container {
+        margin-bottom: 15px;
+    }
+
+    footer {
+        padding: 20px;
+    }
+
+    #dark-mode-toggle {
+        padding: 10px 18px; /* Slightly larger tap target */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+    nav ul li {
+        margin: 0 5px;
+    }
+    #profile-logo {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+/* Social Media Links Styling */
+.social-links-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+    gap: 15px; /* Space between boxes */
+    justify-content: center; /* Center the boxes */
+    padding: 20px 0;
+}
+
+.social-link-box {
+    display: inline-flex; /* Use flex for alignment */
+    align-items: center; /* Center items vertically */
+    text-decoration: none;
+    color: var(--text-light);
+    background-color: var(--card-bg-light);
+    padding: 10px 15px; /* Adjusted padding */
+    margin: 5px; /* Reduced margin */
+    border-radius: 4px; /* Sharper corners */
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease-in-out;
+    min-width: 120px; /* Ensure minimum width */
+    justify-content: center; /* Center content horizontally */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Add subtle default shadow */
+}
+
+.social-link-box img {
+    max-width: 40px; /* Default logo size (good for X) */
+    max-height: 40px;
+    margin-bottom: 8px; /* Space between logo and text */
+    object-fit: contain; /* Ensure logo aspect ratio is maintained */
+}
+
+/* Increase size for specific logos */
+.youtube-link img,
+.twitch-link img,
+.facebook-link img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.social-link-box span {
+    font-size: 0.9em;
+}
+
+.social-link-box:hover {
+    transform: translateY(-3px); /* Lift effect */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* Enhanced hover shadow */
+    border: 1.5px solid var(--primary-color); /* Highlight border on hover - slightly thicker */
+    color: var(--primary-color);
+    /* Adjust padding slightly to compensate for thicker border if needed, but often not necessary */
+    /* padding: 9.5px 14.5px; */ 
+}
+
+body.dark-mode .social-link-box {
+    background-color: var(--card-bg-dark);
+    border-color: var(--border-dark);
+    color: var(--text-dark);
+}
+
+body.dark-mode .social-link-box:hover {
+    border: 1.5px solid var(--primary-color); /* Use primary accent - slightly thicker */
+    color: var(--primary-color);
+    box-shadow: 0 5px 12px rgba(0, 255, 204, 0.20); /* Enhanced shadow with primary color */
+} 
