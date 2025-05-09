@@ -33,15 +33,16 @@ body.dark-mode {
 header {
     /* background-color: #333; Remove fixed background */
     color: #fff;
-    padding: 0;
+    padding: 0; /* Remove padding to make it more compact */
     text-align: center;
     position: relative; /* Needed for potential overlay later */
 }
 
 #heading-banner {
     width: 100%;
-    max-height: 350px; /* Slightly taller banner */
+    max-height: 320px; /* Further increased banner height. If cutoff persists, the image aspect ratio is the primary factor. */
     object-fit: cover;
+    object-position: center center; /* Explicitly center the image */
     display: block;
     filter: brightness(0.8); /* Slightly dim banner for text contrast */
 }
@@ -58,11 +59,14 @@ header {
 } */
 
 nav {
-    background: rgba(10, 10, 10, 0.7); /* Darker semi-transparent nav background */
-    padding: 8px 0; /* Slightly reduced padding */
-    position: sticky; /* Make nav sticky */
+    /* New Nav Idea: Transparent initially, solid on scroll? Or different background? */
+    background: linear-gradient(to bottom, rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)); /* Darker gradient, more depth */
+    padding: 8px 0; /* Slightly more padding for a less cramped feel */
+    position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 1px solid var(--border-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Add a subtle shadow for depth */
 }
 
 nav ul {
@@ -74,24 +78,49 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 15px; /* Increased spacing */
+    margin: 0 10px; /* Adjusted spacing */
 }
 
 nav a {
-    color: #fff;
+    color: #e0e0e0;
     text-decoration: none;
-    font-weight: bold;
-    transition: color 0.2s;
+    font-weight: 500; /* Slightly less bold */
+    padding: 10px 15px; /* More clickable area */
+    border-radius: 20px; /* Pill-shaped links */
+    transition: color 0.2s, background-color 0.2s;
+    position: relative; /* For potential ::before/::after pseudo-elements if needed */
 }
 
 nav a:hover {
-    color: var(--secondary-color);
+    color: #ffffff; /* Brighter white on hover */
+    background-color: var(--primary-color); /* Primary color background on hover */
+}
+
+nav a.active { /* Distinct active state */
+    color: #0d0d0d; /* Dark text for contrast */
+    background-color: var(--primary-color);
+    font-weight: 600; /* Slightly bolder for active */
+}
+
+body.dark-mode nav a {
+    color: #d1d1d1; /* Adjusted for dark mode */
+}
+
+body.dark-mode nav a:hover {
+    color: #ffffff;
+    background-color: var(--primary-color);
+}
+
+body.dark-mode nav a.active {
+    color: #0d0d0d;
+    background-color: var(--primary-color);
+    font-weight: 600;
 }
 
 main {
     max-width: 1000px; /* Slightly narrower */
-    margin: 20px auto; /* Reduced top/bottom margin */
-    padding: 20px; /* Reduced padding */
+    margin: 15px auto; /* Reduced top/bottom margin for compactness */
+    padding: 15px; /* Reduced padding for compactness */
     background-color: var(--card-bg-light);
     box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* Slightly enhanced shadow */
     border-radius: 5px; /* Sharper corners */
@@ -105,8 +134,8 @@ body.dark-mode main {
 
 #intro {
     text-align: center;
-    margin-bottom: 30px; /* Reduced margin */
-    padding-bottom: 20px; /* Reduced padding */
+    margin-bottom: 20px; /* Reduced margin */
+    padding-bottom: 15px; /* Reduced padding */
     border-bottom: 1px solid var(--border-light);
 }
 
@@ -115,25 +144,26 @@ body.dark-mode #intro {
 }
 
 #profile-logo {
-    width: 150px; /* Slightly smaller logo */
-    height: 150px;
+    width: 130px; /* Slightly smaller logo */
+    height: 130px;
     border-radius: 50%;
-    margin-bottom: 15px; /* Reduced margin */
-    border: 4px solid var(--secondary-color); /* Use secondary accent color */
-    box-shadow: 0 0 15px rgba(154, 0, 255, 0.6); /* Shadow matching secondary color */
+    margin-bottom: 10px; /* Reduced margin */
+    border: 3px solid var(--secondary-color); /* Thinner border */
+    box-shadow: 0 0 12px rgba(154, 0, 255, 0.5); /* Reduced shadow */
 }
 
 h1 {
     color: var(--primary-color);
-    margin-bottom: 8px; /* Reduced margin */
-    font-size: 2.5em; /* Slightly smaller */
+    margin-bottom: 5px; /* Reduced margin */
+    font-size: 2.3em; /* Slightly smaller */
 }
 
 h2 {
     color: var(--secondary-color); /* Use secondary color for headings */
     text-align: center; /* Center section titles */
-    margin-bottom: 20px; /* Reduced margin */
-    font-size: 2em; /* Slightly smaller */
+    margin-top: 25px; /* Added top margin for separation */
+    margin-bottom: 15px; /* Reduced margin */
+    font-size: 1.8em; /* Slightly smaller */
     text-transform: uppercase; /* Uppercase for gamey feel */
     letter-spacing: 1px; /* Add some letter spacing */
 }
@@ -146,30 +176,66 @@ body.dark-mode h2 {
 }
 
 #intro p {
-    font-size: 1.1em; /* Slightly smaller */
-    color: #555;
+    font-size: 1em; /* Slightly smaller */
+    color: var(--text-light); /* Use CSS variable */
+    margin-bottom: 15px; /* Reduced space before CTA */
 }
 
 body.dark-mode #intro p {
-    color: #bbb;
+    color: var(--text-dark); /* Use CSS variable */
+}
+
+/* CTA Button Styles */
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #0d0d0d; /* Dark text for contrast on primary color */
+    padding: 10px 20px; /* Reduced padding */
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 25px; /* More rounded */
+    font-size: 1.1em;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 10px rgba(0, 255, 204, 0.3); /* Shadow with primary color */
+}
+
+.cta-button:hover {
+    background-color: var(--secondary-color);
+    color: #ffffff; /* White text on secondary color */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 12px rgba(154, 0, 255, 0.4); /* Shadow with secondary color */
+}
+
+body.dark-mode .cta-button {
+    /* Styles for CTA button in dark mode can be the same if primary/secondary colors work well */
+    /* Or, define specific dark mode CTA styles if needed */
+    background-color: var(--primary-color);
+    color: #0d0d0d; 
+    box-shadow: 0 4px 10px rgba(0, 255, 204, 0.4);
+}
+
+body.dark-mode .cta-button:hover {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(154, 0, 255, 0.5);
 }
 
 /* Channel Description Specific Styles */
 .channel-description {
-    margin-top: 20px; /* Add space above the description */
-    margin-bottom: 15px; /* Add space below the description */
+    margin-top: 15px; /* Reduced space above the description */
+    margin-bottom: 10px; /* Reduced space below the description */
 }
 
 .channel-description h2 {
-    font-size: 1.5em; /* Slightly smaller heading */
-    margin-bottom: 10px;
+    font-size: 1.4em; /* Slightly smaller heading */
+    margin-bottom: 8px; /* Reduced margin */
     color: var(--secondary-color); /* Match other headings */
 }
 
 .channel-description p {
-    font-size: 1em; /* Adjust paragraph size if needed */
-    margin-bottom: 8px; /* Space between description paragraphs */
-    line-height: 1.5; /* Improve readability */
+    font-size: 0.95em; /* Slightly smaller */
+    margin-bottom: 6px; /* Reduced space between description paragraphs */
+    line-height: 1.4; /* Adjust readability */
     color: #555; /* Match intro paragraph color */
 }
 
@@ -178,7 +244,7 @@ body.dark-mode .channel-description p {
 }
 
 #latest-streams, #live-stream, #socials {
-    margin-bottom: 35px; /* Reduced margin */
+    margin-bottom: 25px; /* Reduced margin */
 }
 
 #socials ul {
@@ -189,7 +255,7 @@ body.dark-mode .channel-description p {
 
 #socials ul li {
     display: inline-block;
-    margin: 0 20px;
+    margin: 0 15px; /* Adjusted spacing */
 }
 
 #socials a {
@@ -216,8 +282,8 @@ body.dark-mode #socials a:hover {
     overflow: hidden;
     max-width: 100%;
     background: #000;
-    margin-bottom: 15px; /* Reduced margin */
-    border-radius: 5px; /* Sharper corners for video */
+    margin-bottom: 10px; /* Reduced margin */
+    border-radius: 4px; /* Slightly less rounded corners for video */
     border: 1px solid var(--border-dark); /* Add subtle border */
 }
 
@@ -236,7 +302,7 @@ body.dark-mode .video-container {
 
 footer {
     text-align: center;
-    margin-top: 30px; /* Reduced margin */
+    margin-top: 20px; /* Reduced margin */
     padding: 15px; /* Reduced padding */
     background-color: #1f1f1f; /* Darker footer */
     color: #aaa;
@@ -247,7 +313,32 @@ footer {
 body.dark-mode footer {
     background-color: #101010; /* Even darker footer */
     color: #888;
-    border-top: 1px solid var(--border-dark);
+    border-top: 1px solid var(--border-dark); /* Keep consistent border or use var(--border-light) if preferred */
+}
+
+footer p {
+    margin: 8px 0; /* Spacing for footer content */
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Ensure the #top anchor is invisible but targetable */
+html {
+    scroll-behavior: smooth; /* Smooth scroll for anchor links */
+}
+
+#top { /* This is an invisible anchor, no visual style needed */
+    display: block;
+    position: relative;
+    top: -70px; /* Adjust based on sticky nav height to prevent overlap */
+    visibility: hidden;
 }
 
 /* Dark Mode Toggle Button */
@@ -255,11 +346,11 @@ body.dark-mode footer {
     background: var(--secondary-color);
     color: white;
     border: none;
-    padding: 8px 12px; /* Adjusted padding */
+    padding: 7px 10px; /* Adjusted padding */
     border-radius: 3px; /* Sharper corners */
     cursor: pointer;
-    font-size: 0.9em;
-    margin-top: 10px; /* Reduced margin */
+    font-size: 0.85em; /* Slightly smaller */
+    margin-top: 8px; /* Reduced margin */
     transition: background-color 0.3s, transform 0.1s ease;
     border: 1px solid transparent;
 }
@@ -304,21 +395,21 @@ body.dark-mode #dark-mode-toggle:hover {
     }
 
     #heading-banner {
-        max-height: 250px; /* Lower banner height on mobile */
+        max-height: 240px; /* Adjusted for mobile, maintaining aspect */
     }
 
     main {
-        padding: 20px;
-        margin: 20px auto;
+        padding: 15px;
+        margin: 15px auto;
     }
 
     nav ul li {
-        margin: 0 10px; /* Slightly reduce nav spacing */
+        margin: 0 8px; /* Slightly reduce nav spacing */
     }
 
     #socials ul li {
         display: block; /* Stack social links vertically */
-        margin: 15px 0; /* Add vertical space between links */
+        margin: 10px 0; /* Reduced vertical space */
     }
 
     #socials a {
@@ -326,35 +417,35 @@ body.dark-mode #dark-mode-toggle:hover {
     }
 
     #latest-streams, #live-stream, #socials, #intro {
-        margin-bottom: 30px; /* Reduce space between sections */
+        margin-bottom: 20px; /* Reduced space between sections */
     }
 
     .video-container {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
     footer {
-        padding: 20px;
+        padding: 15px;
     }
 
     #dark-mode-toggle {
-        padding: 10px 18px; /* Slightly larger tap target */
+        padding: 8px 15px; /* Adjusted tap target */
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.8em;
+        font-size: 1.7em;
     }
     h2 {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
     nav ul li {
-        margin: 0 5px;
+        margin: 0 4px; /* Further reduced nav spacing */
     }
     #profile-logo {
-        width: 100px;
-        height: 100px;
+        width: 90px; /* Smaller logo */
+        height: 90px;
     }
 }
 
@@ -362,9 +453,9 @@ body.dark-mode #dark-mode-toggle:hover {
 .social-links-container {
     display: flex;
     flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
-    gap: 15px; /* Space between boxes */
+    gap: 10px; /* Reduced space between boxes */
     justify-content: center; /* Center the boxes */
-    padding: 20px 0;
+    padding: 15px 0; /* Reduced padding */
 }
 
 .social-link-box {
