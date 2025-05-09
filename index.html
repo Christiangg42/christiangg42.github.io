@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to the official hub for Christiangg42, a young Fortnite streamer. Find live streams, video highlights, social links, and more.">
+    <meta property="og:title" content="Christiangg42 - Fortnite Streamer">
+    <meta property="og:description" content="Join Christian Martin for epic Fortnite gameplay, family-friendly entertainment, and weekly streams with giveaways.">
+    <meta property="og:image" content="logo/Square CM Logo.png">
+    <meta property="og:url" content="https://christiangg42.github.io/christiangg42.github.io/"> 
     <title>Christiangg42 - Fortnite Streamer</title>
+    <link rel="icon" href="logo/Square CM Logo.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,6 +17,10 @@
         <img src="logo/youtube headingv2.png" alt="Christiangg42 Channel Banner" id="heading-banner">
         <nav>
             <ul>
+                <li><a href="#intro">Home</a></li>
+                <li><a href="#latest-streams">Videos</a></li>
+                <li><a href="#live-stream">Live</a></li>
+                <li><a href="#socials">Socials</a></li>
                 <!-- Navigation links can go here later -->
             </ul>
         </nav>
@@ -21,6 +31,7 @@
             <img src="logo/Square CM Logo.png" alt="Christiangg42 Logo" id="profile-logo">
             <h1>Welcome to Christiangg42's Hub!</h1>
             <p>Your go-to place for Fortnite streams, highlights, and updates.</p>
+            <a href="#live-stream" class="cta-button">Watch Live Now!</a>
             
             <div class="channel-description">
                 <h2>Christian Martin - Young Fortnite Streamer & Family Gaming Adventures!</h2>
@@ -86,6 +97,7 @@
     <footer>
         <p>&copy; 2024 Christiangg42. All rights reserved.</p>
         <button id="dark-mode-toggle">Toggle Dark Mode</button>
+        <p><a href="#top">Back to Top</a></p>
     </footer>
 
     <script>
@@ -108,6 +120,50 @@
                 localStorage.setItem('theme', 'light'); 
             }
         });
+
+        // JavaScript for active navigation link on scroll
+        const navLinksJS = document.querySelectorAll('nav a');
+        const sectionsJS = document.querySelectorAll('main section[id]');
+        const navBarJS = document.querySelector('nav');
+
+        function updateActiveNavLink() {
+            let currentActiveSectionId = '';
+            const navHeight = navBarJS.offsetHeight;
+            // Consider a section active when its top is ~15px below the nav bar
+            const scrollActivationPoint = window.scrollY + navHeight + 15;
+
+            sectionsJS.forEach(section => {
+                // A section is a candidate if its top has scrolled past the activation point
+                if (section.offsetTop <= scrollActivationPoint) {
+                    currentActiveSectionId = section.id;
+                }
+            });
+
+            // If at the very top before the first section hits the activation point, make the first link active.
+            if (!currentActiveSectionId && sectionsJS.length > 0 && window.scrollY < sectionsJS[0].offsetTop - navHeight) {
+                currentActiveSectionId = sectionsJS[0].id;
+            }
+
+            // If scrolled to the very bottom of the page, ensure the last section is active.
+            // (window.innerHeight + window.scrollY) is the current bottom of the viewport.
+            // document.body.scrollHeight is the total scrollable height of the page.
+            if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 2) { // 2px tolerance for precision issues
+                if (sectionsJS.length > 0) {
+                    currentActiveSectionId = sectionsJS[sectionsJS.length - 1].id;
+                }
+            }
+
+            navLinksJS.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentActiveSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+        window.addEventListener('load', updateActiveNavLink); // Initial check on page load
+        window.addEventListener('resize', updateActiveNavLink); // Update if window is resized (nav height might change)
 
     </script>
 </body>
